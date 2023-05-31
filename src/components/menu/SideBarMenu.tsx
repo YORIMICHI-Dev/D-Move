@@ -48,7 +48,7 @@ const SideBarMenu = () => {
                 break
 
             case 'github':
-                await open('https://twitter.com/YORIMICHI_Dev')
+                await open(process.env.NEXT_PUBLIC_GITHUB_URL)
                 break
 
             // Exit operation
