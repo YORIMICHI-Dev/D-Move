@@ -1,13 +1,16 @@
 'use client'
+
 import React, { useState } from 'react'
-import { open } from '@tauri-apps/api/shell'
+
 import type { MenuProps } from 'antd'
 import { Layout, Menu } from 'antd'
 const { Sider } = Layout
 
-import { menus } from '@/lib/sidebar_menu/sidebarMenu'
 import { useExitModal, useVersionModal } from '@/lib/jotai_management/modal_state'
 import { useTheme } from '@/lib/jotai_management/theme_state'
+import { menus } from '@/lib/sidebar_menu/sidebarMenu'
+import { importImage, exportImage } from '@/lib/tauri_function/dialog_functions'
+import { openGithub } from '@/lib/tauri_function/shell_functions'
 
 const SideBarMenu = () => {
     const [collapsed, setCollapsed] = useState(false)
@@ -26,15 +29,25 @@ const SideBarMenu = () => {
         switch (currentKey) {
             // File operation
             case 'open':
+                
                 break
 
             case 'save':
+
                 break
 
             case 'import':
+                const importedImage = await importImage()
+                if (importedImage) {
+                    console.log(importedImage)
+                }
                 break
 
             case 'export':
+                const exportedImage = await exportImage()
+                if (exportImage) {
+                    console.log(exportImage)
+                }
                 break
 
             // Setting operation
@@ -48,7 +61,7 @@ const SideBarMenu = () => {
                 break
 
             case 'github':
-                await open(process.env.NEXT_PUBLIC_GITHUB_URL)
+                openGithub()
                 break
 
             // Exit operation
@@ -59,6 +72,7 @@ const SideBarMenu = () => {
             default:
                 console.log(currentKey)
         }
+        setCurrent("")
     }
 
     return (

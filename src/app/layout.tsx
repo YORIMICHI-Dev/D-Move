@@ -1,13 +1,11 @@
 'use client'
 
-import { Layout, ConfigProvider, theme } from 'antd'
+import { Layout, ConfigProvider} from 'antd'
 const { Content } = Layout
-const { defaultAlgorithm, darkAlgorithm} = theme
 
 import SideBarMenu from '@/components/menu/SideBarMenu'
 import HeaderMenu from '@/components/menu/HeaderMenu'
 import { Modals } from '@/components/modal/Modals'
-import { useTheme } from '@/lib/jotai_management/theme_state'
 import './globals.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
